@@ -15,7 +15,7 @@ setuptools.setup(
     description="a lib for the orange alliance (TOA) apiv3 using asyncio/aiohttp",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/guineawheek/aiotba",
+    url="https://github.com/guineawheek/aiotoa",
     packages=setuptools.find_packages(),
     install_requires=reqs,
     classifiers=[
