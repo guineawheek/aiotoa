@@ -1,6 +1,5 @@
 import datetime
 from typing import Dict, Tuple, List, Union, Any
-from . import AioTOAError
 
 
 class Converter:
@@ -20,18 +19,6 @@ class Timestamp(Converter):
             return datetime.datetime.strptime(value, self.fmt)
         else:
             return datetime.datetime.fromtimestamp(value)
-
-
-class HomeChampionship(Converter):
-    def __call__(self, value) -> Dict[int, str]:
-        return {int(k): v for k, v in value.items()} if value else {}
-
-
-class FirstOf(Converter):
-    def __call__(self, value):
-        if not len(value):
-            raise AioTOAError("data list is empty!")
-        return value[0]
 
 
 class Model(Converter):
@@ -55,7 +42,6 @@ class Model(Converter):
                 else:
                     setattr(self, field_name, None)
             except TypeError:
-                print(f"REEEEEEE: {field_name}")
                 raise
 
     def __contains__(self, item):
@@ -164,7 +150,7 @@ class Match(Model):
     field_number: int
     prestart_time: Timestamp("%Y-%m-%d %H:%M:%S")
     prestart_count: int
-    cycle_time: Timestamp(fmt="%H:%M:%S.%f")
+    cycle_time: Timestamp("%H:%M:%S.%f")
     red_score: int
     blue_score: int
     red_penalty: int
