@@ -11,7 +11,7 @@ from aiotoa import TOASession
 async def main():
     ses = TOASession("toa api key here", "toa app name here")
     lanbros = await ses.team(9971)
-    print(lanbros.team_name)
+    print(lanbros.team_name_short)
 
 asyncio.run(main())
 ```
