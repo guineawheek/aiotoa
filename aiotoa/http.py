@@ -1,6 +1,7 @@
 from asyncio import sleep
 from urllib.parse import urlencode
 import datetime
+import json
 import aiohttp
 from async_timeout import timeout as atimeout
 
@@ -72,7 +73,9 @@ class TOASession:
         }
 
         async with atimeout(5) as _, self.session.get("https://theorangealliance.org/api" + endpoint, headers=headers) as response:
-            data = await response.json()
+            # toa _still_ sometimes returns json data as text/html, making response.json() throw an exception
+            # _sigh_
+            data = json.loads(await response.text())
             # toa never returns data in dicts, it's always lists
             if isinstance(data, dict):
                 raise AioTOAError(f"Request to {endpoint} failed with {response.status} {response.reason} (data={data})")
