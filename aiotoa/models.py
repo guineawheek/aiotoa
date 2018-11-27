@@ -294,7 +294,7 @@ class Team(Model):
     website: str
 
 
-class EventParticipant(Model):
+class TeamEventParticipant(Model):
     event_participant_key: str
     event_key: str
     team_key: str
@@ -302,6 +302,16 @@ class EventParticipant(Model):
     is_active: bool
     card_status: str
     team: Team
+
+
+class EventEventParticipant(Model):
+    event_participant_key: str
+    event_key: str
+    team_key: str
+    is_active: bool
+    card_status: str
+    event: Event
+
 
 
 class Award(Model):

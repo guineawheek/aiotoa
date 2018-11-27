@@ -135,7 +135,7 @@ class TOASession:
         pass
 
     @endpoint("/event/{0}/teams")
-    async def event_teams(self, event_key) -> List[EventParticipant]:
+    async def event_teams(self, event_key) -> List[TeamEventParticipant]:
         pass
 
     @endpoint("/event/{0}/awards")
@@ -171,7 +171,7 @@ class TOASession:
         pass
 
     @endpoint("/team/{0}/events/{1}")
-    async def team_events(self, team_key, season_key) -> List[EventParticipant]:
+    async def team_events(self, team_key, season_key) -> List[EventEventParticipant]:
         pass
 
     @endpoint("/team/{0}/matches/{1}")
